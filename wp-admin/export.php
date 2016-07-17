@@ -14,7 +14,7 @@ if ( !current_user_can('export') )
 
 /** Load WordPress export API */
 require_once( ABSPATH . 'wp-admin/includes/export.php' );
-$title = __('Export');
+$title = __('System Backup');
 
 /**
  * Display JavaScript on the page.
@@ -45,14 +45,14 @@ add_action( 'admin_head', 'export_add_js' );
 get_current_screen()->add_help_tab( array(
 	'id'      => 'overview',
 	'title'   => __('Overview'),
-	'content' => '<p>' . __('You can export a file of your site&#8217;s content in order to import it into another installation or platform. The export file will be an XML file format called WXR. Posts, pages, comments, custom fields, categories, and tags can be included. You can choose for the WXR file to include only certain posts or pages by setting the dropdown filters to limit the export by category, author, date range by month, or publishing status.') . '</p>' .
-		'<p>' . __('Once generated, your WXR file can be imported by another WordPress site or by another blogging platform able to access this format.') . '</p>',
+	'content' => '<p>' . __('Use this page to generate a backup of your data.') . '</p>' .
+		'<p>' . __('Once generated, your backup file can be restored incase something happened.') . '</p>',
 ) );
 
 get_current_screen()->set_help_sidebar(
-	'<p><strong>' . __('For more information:') . '</strong></p>' .
-	'<p>' . __('<a href="https://codex.wordpress.org/Tools_Export_Screen" target="_blank">Documentation on Export</a>') . '</p>' .
-	'<p>' . __('<a href="https://wordpress.org/support/" target="_blank">Support Forums</a>') . '</p>'
+	'<p><strong>' . __('') . '</strong></p>' .
+	'<p>' . __('') . '</p>' .
+	'<p>' . __('') . '</p>'
 );
 
 // If the 'download' URL parameter is set, a WXR export file is baked and returned.
@@ -154,20 +154,19 @@ function export_date_options( $post_type = 'post' ) {
 <div class="wrap">
 <h1><?php echo esc_html( $title ); ?></h1>
 
-<p><?php _e('When you click the button below WordPress will create an XML file for you to save to your computer.'); ?></p>
-<p><?php _e('This format, which we call WordPress eXtended RSS or WXR, will contain your posts, pages, comments, custom fields, categories, and tags.'); ?></p>
-<p><?php _e('Once you&#8217;ve saved the download file, you can use the Import function in another WordPress installation to import the content from this site.'); ?></p>
+<p><?php _e('Use this page to generate a backup of your data.'); ?></p>
+<p><?php _e('Once generated, your backup file can be restored incase something happened.'); ?></p>
 
-<h2><?php _e( 'Choose what to export' ); ?></h2>
+<h2><?php _e( 'Choose what to Backup' ); ?></h2>
 <form method="get" id="export-filters">
 <fieldset>
 <legend class="screen-reader-text"><?php _e( 'Content to export' ); ?></legend>
 <input type="hidden" name="download" value="true" />
-<p><label><input type="radio" name="content" value="all" checked="checked" aria-describedby="all-content-desc" /> <?php _e( 'All content' ); ?></label></p>
-<p class="description" id="all-content-desc"><?php _e( 'This will contain all of your posts, pages, comments, custom fields, terms, navigation menus and custom posts.' ); ?></p>
+<p><label><input type="radio" name="content" value="all" checked="checked" aria-describedby="all-content-desc" /> <?php _e( 'Entire System' ); ?></label></p>
+<p class="description" id="all-content-desc"><?php _e( 'This will contain all of your data like products, settings and stuff.' ); ?></p>
 
-<p><label><input type="radio" name="content" value="posts" /> <?php _e( 'Posts' ); ?></label></p>
-<ul id="post-filters" class="export-filters">
+<p style="display:none;"><label><input type="radio" name="content" value="posts" /> <?php _e( 'Posts' ); ?></label></p>
+<ul style="display:none;" id="post-filters" class="export-filters">
 	<li>
 		<label><span class="label-responsive"><?php _e( 'Categories:' ); ?></span>
 		<?php wp_dropdown_categories( array( 'show_option_all' => __('All') ) ); ?>
@@ -208,7 +207,7 @@ function export_date_options( $post_type = 'post' ) {
 	</li>
 </ul>
 
-<p><label><input type="radio" name="content" value="pages" /> <?php _e( 'Pages' ); ?></label></p>
+<p style="display:none;"><label><input type="radio" name="content" value="pages" /> <?php _e( 'Pages' ); ?></label></p>
 <ul id="page-filters" class="export-filters">
 	<li>
 		<label><span class="label-responsive"><?php _e( 'Authors:' ); ?></span>
@@ -244,11 +243,18 @@ function export_date_options( $post_type = 'post' ) {
 	</li>
 </ul>
 
-<?php foreach ( get_post_types( array( '_builtin' => false, 'can_export' => true ), 'objects' ) as $post_type ) : ?>
+<?php 
+$post_types = get_post_types( array( '_builtin' => false, 'can_export' => true ), 'objects' );
+foreach ( $post_types as $post_type ) : 
+
+if($post_type->name == "shop_webhook"){
+	break;
+}
+?>
 <p><label><input type="radio" name="content" value="<?php echo esc_attr( $post_type->name ); ?>" /> <?php echo esc_html( $post_type->label ); ?></label></p>
 <?php endforeach; ?>
 
-<p><label><input type="radio" name="content" value="attachment" /> <?php _e( 'Media' ); ?></label></p>
+<p style="display:none;"><label><input type="radio" name="content" value="attachment" /> <?php _e( 'Media' ); ?></label></p>
 <ul id="attachment-filters" class="export-filters">
 	<li>
 		<fieldset>
@@ -277,7 +283,7 @@ function export_date_options( $post_type = 'post' ) {
 do_action( 'export_filters' );
 ?>
 
-<?php submit_button( __('Download Export File') ); ?>
+<?php submit_button( __('Download System Backup File') ); ?>
 </form>
 </div>
 
