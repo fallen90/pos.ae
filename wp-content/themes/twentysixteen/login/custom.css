@@ -1,13 +1,18 @@
 body.login {
+padding-top: 10px;
   background-image: url('home-bg.jpg');
   /*background-repeat: no-repeat;*/
   background-attachment: fixed;
   background-position: center;
-  height: 100%;
+  height: 130%;
   width: 100%;
 }
 
 
 .login h1 a {
   background-image: url('logo.png');
+ background-size: cover;
+  /*background-repeat: no-repeat;*/
+ height: 170px;
+  width: 170px;
 }
