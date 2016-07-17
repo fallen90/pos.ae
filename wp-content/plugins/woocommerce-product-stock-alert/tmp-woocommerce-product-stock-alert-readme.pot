@@ -1,0 +1,274 @@
+msgid ""
+msgstr "MIME-Version: 1.0\n"
+
+#. Name.
+msgid "WooCommerce Product Stock Alert"
+msgstr ""
+
+#. Short description.
+msgid "Alert your customer when a product of her choice is available again."
+msgstr ""
+
+#. Screenshot description.
+msgid "Stock alert plugin settings panel"
+msgstr ""
+
+#. Screenshot description.
+msgid "Stock alert admin email settings panel"
+msgstr ""
+
+#. Screenshot description.
+msgid "Stock alert customer email settings panel"
+msgstr ""
+
+#. Screenshot description.
+msgid "Stock alert customer confirmation email settings panel"
+msgstr ""
+
+#. Screenshot description.
+msgid "An out of stock simple product with textarea to subscribe"
+msgstr ""
+
+#. Screenshot description.
+msgid "An out of stock variable product with textarea to subscribe"
+msgstr ""
+
+#. Screenshot description.
+msgid "An email sent to admin when a customer subscribed the product"
+msgstr ""
+
+#. Screenshot description.
+msgid "Number of customers interested with out of stock products"
+msgstr ""
+
+#. Screenshot description.
+msgid "Individual product edit page for simple product with number of interested persons"
+msgstr ""
+
+#. Screenshot description.
+msgid "Individual product edit page for variable product when no customer is interested"
+msgstr ""
+
+#. Screenshot description.
+msgid "Individual product edit page for variable product with number of interested persons"
+msgstr ""
+
+#. Screenshot description.
+msgid "An email sent to the customer when the product becomes available"
+msgstr ""
+
+#. Screenshot description.
+msgid "Plugin settings to customize stock alert form"
+msgstr ""
+
+#. Screenshot description.
+msgid "A customized stock alert form"
+msgstr ""
+
+#. Screenshot description.
+msgid "Export subscribers' list"
+msgstr ""
+
+#. Found in description header.
+msgid "Features"
+msgstr ""
+
+#. Found in description header.
+msgid "Compatibility"
+msgstr ""
+
+#. Found in description header.
+msgid "Configurable"
+msgstr ""
+
+#. Found in description header.
+msgid "Feedback"
+msgstr ""
+
+#. Found in description list item.
+msgid "WooCommerce Product Stock Alert Plugin creates a form with an out of stock product. Interested customers can register with their email address. "
+msgstr ""
+
+#. Found in description list item.
+msgid "When a customer subscribe any out of stock product on your site, an email will be sent to admin with customer email id and interested product."
+msgstr ""
+
+#. Found in description list item.
+msgid "This plugin also creates a field to the inventory of edit product page to show number of interested persons. This will let you decide how many stock you want to add further."
+msgstr ""
+
+#. Found in description list item.
+msgid "As soon as the product becomes available, an alert email will be sent to the interested persons."
+msgstr ""
+
+#. Found in description list item.
+msgid "This is an extremely light-weight plugin; it doesn't hamper the speed of your website and ensures smooth transition."
+msgstr ""
+
+#. Found in description list item.
+msgid "This killer plugin is easy to set up, use and install. You need not be a coding or developing expert to understand how the plugin works. Just install and let it do the rest."
+msgstr ""
+
+#. Found in description list item.
+msgid "You can customize the form heading message, button text, color, hover color, alert message after form submission and etc. from plugin settings page."
+msgstr ""
+
+#. Found in description list item.
+msgid "You can customize email heading, email subject which will be sent to customers from WooCommerce email settings."
+msgstr ""
+
+#. Found in description list item.
+msgid "WooCommerce Product Stock Alert Plugin will work if product Backorder option is enabled."
+msgstr ""
+
+#. Found in description list item.
+msgid "[display_stock_alert_form] =&gt; Shortcode to display stock alert form in product page."
+msgstr ""
+
+#. Found in description list item.
+msgid "An export option is added inside 'Tools-&gt;WC Stock Alert Export' to export subscribers' list."
+msgstr ""
+
+#. Found in description list item.
+msgid "Customer can unsubscribe a product which he/she already subscribed."
+msgstr ""
+
+#. Found in description list item.
+msgid "WordPress 3.6 or later"
+msgstr ""
+
+#. Found in description list item.
+msgid "WooCommerce 2.2 or greater"
+msgstr ""
+
+#. Found in description list item.
+msgid "Multilingual Support is included with the plugin and is fully compatible with WPML."
+msgstr ""
+
+#. Found in description paragraph.
+msgid "Never miss a sale now. This plugin lets prospective buyers subscribe to a product when it is out of stock. Once subscribed, customers will get email notification when the product becomes available. On the admin side - you may view number of interested customers for any out of stock product."
+msgstr ""
+
+#. Found in description paragraph.
+msgid "WooCommerce Product Stock Alert has provided customizable email structure. Admin can customize email Header as well as email Subject from WooCommerce settings panel."
+msgstr ""
+
+#. Found in description paragraph.
+msgid "Thanks heaps for trying this plugin. I hope it could serve your purpose. If you find this plugin is helpful, appreciate us by giving a 5/5 star and feel free to comment as well as suggest additional features. If you find the plugin is buggy, please do mention the reason and we will add or change options and fix bugs. For more information and instructions on this plugin please visit www.dualcube.com."
+msgstr ""
+
+#. Found in installation list item.
+msgid "Upload your plugin folder to the '/wp-content/plugins' directory."
+msgstr ""
+
+#. Found in installation list item.
+msgid "Activate the plugin through the 'Plugins' menu in WordPress."
+msgstr ""
+
+#. Found in installation list item.
+msgid "Goto plugin settings and \"Enable Stock Alert\"."
+msgstr ""
+
+#. Found in installation list item.
+msgid "Customize email heading, email subject from WooCommerce email settings."
+msgstr ""
+
+#. Found in installation list item.
+msgid "All done. Just wait and watch how many customers are interested with an out of stock product of your Woostore."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Features : Customer can unsubscribe a product which he/she already subscribed."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Feature : A confirmation mail will be sent to subscriber after subscribe a product."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Feature : [display_stock_alert_form] =&gt; Shortcode to display stock alert form in product page."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Feature : An export option is added inside 'Tools-&gt;WC Stock Alert Export' to export subscribers' list."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Features : New options added into plugin settings panel to customize alert message after form submission."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Fix : Fixed some issues, now plugin will work with WooCommerce 2.4+."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Stock alert form will be displayed on backorder product properly."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Sending alert email automatically when backorder is enabled and in-stock is selected issue has been resolved."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Works with \"WooCommerce Subscription Products\"."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Now this plugin works with Backorders even \"in-stock\" is selected."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Plugin settings panel is added to customize stock alert form."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Now alert email will be send as soon as product becomes in-stock."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Now plugin will work with Backorders."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Fixed minor bug and compatible with latest WooCommerce."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Fixed some issue and now plugin is working with Variable product."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "Initial release."
+msgstr ""
+
+#. Found in faq header.
+msgid "Does this plugin work with newest WP version and also older versions?"
+msgstr ""
+
+#. Found in faq header.
+msgid "Does this plugin work with newest WooCommerce version and also older versions?"
+msgstr ""
+
+#. Found in faq header.
+msgid "Does this plugin work with all types of theme"
+msgstr ""
+
+#. Found in faq header.
+msgid "Does this plugin work with WooCommerce Subscription Product"
+msgstr ""
+
+#. Found in faq paragraph.
+msgid "Yes, this plugin works with WordPress 3.6 or later."
+msgstr ""
+
+#. Found in faq paragraph.
+msgid "Yes, this plugin is compatible with WooCommerce 2.2 or later."
+msgstr ""
+
+#. Found in faq paragraph.
+msgid "Yes, this plugin is compatible with all latest version of WooCommerce themes."
+msgstr ""
+
+#. Found in faq paragraph.
+msgid "Yes, this plugin works with WooCommerce Subscription Product."
+msgstr ""
