@@ -49,7 +49,18 @@ Should you find a bug, please do not hesitate to contact us through our support 
 1. Upload the 'woocommerce-point-of-sale' folder to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
-== Changelog =
+== Changelog ==
+= 3.1.4.9 - 2016.07.21 =
+* Fix bug with customer loading after removing previous customer on guest orders.
+* Fix bug with WC 2.6.x update affecting tax from being applied.
+* Fix bug with rounding errors caused after WC 2.6.x update.
+* Fix bug with Gravatar HTTPS error.
+* Fix bug with quantity stock errors produced when quantity is approaching zero.
+
+= 3.1.4.8 - 2016.07.20 =
+* Fix bug with product discounts not being applied correctly.
+* Fix bug with adding, saving and loading orders with discount.
+
 = 3.1.4.7 - 2016.07.15 =
 * Fix bug with customer search not working for some users.
 

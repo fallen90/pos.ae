@@ -117,7 +117,7 @@ class WC_API_POS_Orders extends WC_API_Orders {
 			}
 
 			// if creating order for existing customer
-			if ( ! empty( $data['customer_id'] ) ) {
+			if ( isset( $data['customer_id'] ) ) {
 
 				if( $data['customer_id'] > 0 ){
 					// make sure customer exists
@@ -129,6 +129,7 @@ class WC_API_POS_Orders extends WC_API_Orders {
 				$order_args['customer_id'] = $data['customer_id'];
 
 			}
+
 			if( $data['create_account'] === true ) {
 
 				$billing_data = $data['billing_address'];
@@ -181,7 +182,7 @@ class WC_API_POS_Orders extends WC_API_Orders {
 				$order_args['customer_id'] = $new_customer;
 			}
 
-			if( isset($order_args['customer_id']) && $order_args['customer_id'] ){
+			if( isset($order_args['customer_id']) ){
 				update_post_meta( $order->id, '_customer_user', $order_args['customer_id'] );
 				$order = wc_get_order( $id );
 			}	
@@ -191,6 +192,24 @@ class WC_API_POS_Orders extends WC_API_Orders {
 					update_user_meta($order_args['customer_id'], $key, $value);
 				}
 			}		
+
+			$address_fields = array(
+				'first_name',
+				'last_name',
+				'company',
+				'email',
+				'phone',
+				'address_1',
+				'address_2',
+				'city',
+				'state',
+				'postcode',
+				'country',
+			);
+			foreach ($address_fields as $mkey) {				
+				delete_post_meta( $order->id, "_billing_" . $mkey );
+				delete_post_meta( $order->id, "_shipping_" . $mkey );
+			}
 
 			// billing/shipping addresses
 			$this->set_order_addresses( $order, $data );
@@ -257,7 +276,12 @@ class WC_API_POS_Orders extends WC_API_Orders {
 
 					foreach ( $data[ $line ] as $item ) {
 
-						$this->$set_item( $order, $item, 'create' );
+						if( $line_type == 'coupon' && $item['code'] == 'POS Discount' && isset($item['type']) && $item['type'] == 'percent' && isset($item['pamount'])){
+							$item_id = $order->add_coupon( $item['code'], isset( $item['amount'] ) ? floatval( $item['amount'] ) : 0 );	
+							wc_add_order_item_meta( $item_id, 'discount_amount_percent', $item['pamount'] );
+						}else{
+							$this->$set_item( $order, $item, 'create' );							
+						}
 						if( $line_type == 'coupon' && $item['code'] == 'WC_POINTS_REDEMPTION'){
 							global $wc_points_rewards;
 							$discount_amount = $item['amount'];

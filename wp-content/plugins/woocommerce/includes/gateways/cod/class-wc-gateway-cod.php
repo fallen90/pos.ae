@@ -17,13 +17,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_Gateway_COD extends WC_Payment_Gateway {
 
-    /**
-     * Constructor for the gateway.
-     */
+	/**
+	 * Constructor for the gateway.
+	 */
 	public function __construct() {
 		$this->id                 = 'cod';
 		$this->icon               = apply_filters( 'woocommerce_cod_icon', '' );
-		$this->method_title       = __( 'Cash on Delivery', 'woocommerce' );
+		$this->method_title       = __( 'Cash', 'woocommerce' );
 		$this->method_description = __( 'Have your customers pay with cash (or by other means) upon delivery.', 'woocommerce' );
 		$this->has_fields         = false;
 
@@ -41,25 +41,25 @@ class WC_Gateway_COD extends WC_Payment_Gateway {
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
 		add_action( 'woocommerce_thankyou_cod', array( $this, 'thankyou_page' ) );
 
-    	// Customer Emails
-    	add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
+		// Customer Emails
+		add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
 	}
 
-    /**
-     * Initialise Gateway Settings Form Fields.
-     */
-    public function init_form_fields() {
-    	$shipping_methods = array();
+	/**
+	 * Initialise Gateway Settings Form Fields.
+	 */
+	public function init_form_fields() {
+		$shipping_methods = array();
 
-    	if ( is_admin() )
-	    	foreach ( WC()->shipping()->load_shipping_methods() as $method ) {
-		    	$shipping_methods[ $method->id ] = $method->get_title();
-	    	}
+		if ( is_admin() )
+			foreach ( WC()->shipping()->load_shipping_methods() as $method ) {
+				$shipping_methods[ $method->id ] = $method->get_title();
+			}
 
-    	$this->form_fields = array(
+		$this->form_fields = array(
 			'enabled' => array(
-				'title'       => __( 'Enable COD', 'woocommerce' ),
-				'label'       => __( 'Enable Cash on Delivery', 'woocommerce' ),
+				'title'       => __( 'Enable Cash', 'woocommerce' ),
+				'label'       => __( 'Enable Cash', 'woocommerce' ),
 				'type'        => 'checkbox',
 				'description' => '',
 				'default'     => 'no'
@@ -68,21 +68,21 @@ class WC_Gateway_COD extends WC_Payment_Gateway {
 				'title'       => __( 'Title', 'woocommerce' ),
 				'type'        => 'text',
 				'description' => __( 'Payment method description that the customer will see on your checkout.', 'woocommerce' ),
-				'default'     => __( 'Cash on Delivery', 'woocommerce' ),
+				'default'     => __( 'Cash', 'woocommerce' ),
 				'desc_tip'    => true,
 			),
 			'description' => array(
 				'title'       => __( 'Description', 'woocommerce' ),
 				'type'        => 'textarea',
 				'description' => __( 'Payment method description that the customer will see on your website.', 'woocommerce' ),
-				'default'     => __( 'Pay with cash upon delivery.', 'woocommerce' ),
+				'default'     => __( 'Pay with cash.', 'woocommerce' ),
 				'desc_tip'    => true,
 			),
 			'instructions' => array(
 				'title'       => __( 'Instructions', 'woocommerce' ),
 				'type'        => 'textarea',
 				'description' => __( 'Instructions that will be added to the thank you page.', 'woocommerce' ),
-				'default'     => __( 'Pay with cash upon delivery.', 'woocommerce' ),
+				'default'     => __( 'Pay with cash.', 'woocommerce' ),
 				'desc_tip'    => true,
 			),
 			'enable_for_methods' => array(
@@ -91,7 +91,7 @@ class WC_Gateway_COD extends WC_Payment_Gateway {
 				'class'             => 'wc-enhanced-select',
 				'css'               => 'width: 450px;',
 				'default'           => '',
-				'description'       => __( 'If COD is only available for certain methods, set it up here. Leave blank to enable for all methods.', 'woocommerce' ),
+				'description'       => __( 'If Cash is only available for certain methods, set it up here. Leave blank to enable for all methods.', 'woocommerce' ),
 				'options'           => $shipping_methods,
 				'desc_tip'          => true,
 				'custom_attributes' => array(
@@ -100,12 +100,12 @@ class WC_Gateway_COD extends WC_Payment_Gateway {
 			),
 			'enable_for_virtual' => array(
 				'title'             => __( 'Accept for virtual orders', 'woocommerce' ),
-				'label'             => __( 'Accept COD if the order is virtual', 'woocommerce' ),
+				'label'             => __( 'Accept Cash if the order is virtual', 'woocommerce' ),
 				'type'              => 'checkbox',
 				'default'           => 'yes'
 			)
- 	   );
-    }
+	   );
+	}
 
 	/**
 	 * Check If The Gateway Is Available For Use.
@@ -189,18 +189,17 @@ class WC_Gateway_COD extends WC_Payment_Gateway {
 	}
 
 
-    /**
-     * Process the payment and return the result.
-     *
-     * @param int $order_id
-     * @return array
-     */
+	/**
+	 * Process the payment and return the result.
+	 *
+	 * @param int $order_id
+	 * @return array
+	 */
 	public function process_payment( $order_id ) {
-
 		$order = wc_get_order( $order_id );
 
-		// Mark as processing (payment won't be taken until delivery)
-		$order->update_status( 'processing', __( 'Payment to be made upon delivery.', 'woocommerce' ) );
+		// Mark as processing or on-hold (payment won't be taken until delivery)
+		$order->update_status( apply_filters( 'woocommerce_cod_process_payment_order_status', $order->has_downloadable_item() ? 'on-hold' : 'processing', $order ), __( 'Payment to be in Store.', 'woocommerce' ) );
 
 		// Reduce stock levels
 		$order->reduce_order_stock();
@@ -215,23 +214,23 @@ class WC_Gateway_COD extends WC_Payment_Gateway {
 		);
 	}
 
-    /**
-     * Output for the order received page.
-     */
+	/**
+	 * Output for the order received page.
+	 */
 	public function thankyou_page() {
 		if ( $this->instructions ) {
-        	echo wpautop( wptexturize( $this->instructions ) );
+			echo wpautop( wptexturize( $this->instructions ) );
 		}
 	}
 
-    /**
-     * Add content to the WC emails.
-     *
-     * @access public
-     * @param WC_Order $order
-     * @param bool $sent_to_admin
-     * @param bool $plain_text
-     */
+	/**
+	 * Add content to the WC emails.
+	 *
+	 * @access public
+	 * @param WC_Order $order
+	 * @param bool $sent_to_admin
+	 * @param bool $plain_text
+	 */
 	public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
 		if ( $this->instructions && ! $sent_to_admin && 'cod' === $order->payment_method ) {
 			echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
