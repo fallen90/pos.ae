@@ -2433,9 +2433,10 @@ jQuery(document).ready(function($) {
 			});
 			$('#add_custom_product').click(function() {
 			    var err = 0;
-			    $('#custom_product_title, #custom_product_price, #custom_product_quantity').each(function(index, el) {
+                $('#custom_product_title').val('Service Charge');
+			    $('#custom_product_title, #custom_product_price').each(function(index, el) {
 			        if($(this).val() == ''){
-			            APP.showNotice(pos_i18n[20+index], 'error');
+			            APP.showNotice('All fields are required', 'error');
 			            err++;
 			            return false;
 			        }
@@ -2448,9 +2449,9 @@ jQuery(document).ready(function($) {
 			    	adding_to_cart.price = $('#custom_product_table input#custom_product_price').val();
 			    	adding_to_cart.regular_price = adding_to_cart.price;
 
-			    var quantity = parseInt($('#custom_product_table input#custom_product_quantity').val());
+			    var quantity = 1; //parseInt($('#custom_product_table input#custom_product_quantity').val());
                 if( wc_pos_params.decimal_quantity == 'yes' ){
-                    quantity = parseFloat($('#custom_product_table input#custom_product_quantity').val());
+                    quantity = 1.00; //parseFloat($('#custom_product_table input#custom_product_quantity').val());
                 }
 			    var variation = {};
 
@@ -2467,7 +2468,7 @@ jQuery(document).ready(function($) {
 			$('#add_product_to_register').click(function(event) {
 				$('#custom_product_meta_label, #custom_product_meta_table').hide();
 				$('#custom_product_meta_table tbody').html('');
-				$('#custom_product_title, #custom_product_price, #custom_product_quantity').val('');
+				//$('#custom_product_title, #custom_product_price, #custom_product_quantity').val('');
 				openModal('modal-add_custom_product');
 			});
 			$('.wc_pos_register_notes').on('click', function() {

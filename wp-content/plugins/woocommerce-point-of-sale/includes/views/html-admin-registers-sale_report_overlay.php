@@ -96,7 +96,7 @@
                             }
                         }
 
-                        printf( __( '%s by %s', 'woocommerce' ), '<a href="' . admin_url( 'post.php?post=' . absint( $value->ID ) . '&action=edit' ) . '"><strong>' . esc_attr( $the_order->get_order_number() ) . '</strong></a>', $username );
+                        printf( __( '%s %s', 'woocommerce' ), '<a href="' . admin_url( 'post.php?post=' . absint( $value->ID ) . '&action=edit' ) . '"><strong>' . esc_attr( $the_order->get_order_number() ) . '</strong></a>', '' );
 
                         if ( $the_order->billing_email ) {
                             echo '<small class="meta email"><a href="' . esc_url( 'mailto:' . $the_order->billing_email ) . '">' . esc_html( $the_order->billing_email ) . '</a></small>';
@@ -188,7 +188,7 @@
                             }
                         }
 
-                        printf( __( '%s by %s', 'woocommerce' ), '<a href="' . admin_url( 'post.php?post=' . absint( $value->ID ) . '&action=edit' ) . '"><strong>' . esc_attr( $the_order->get_order_number() ) . '</strong></a>', $username );
+                        printf( __( '%s %s', 'woocommerce' ), '<a href="' . admin_url( 'post.php?post=' . absint( $value->ID ) . '&action=edit' ) . '"><strong>' . esc_attr( $the_order->get_order_number() ) . '</strong></a>', '' );
 
                         if ( $the_order->billing_email ) {
                             echo '<small class="meta email"><a href="' . esc_url( 'mailto:' . $the_order->billing_email ) . '">' . esc_html( $the_order->billing_email ) . '</a></small>';

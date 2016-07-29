@@ -172,9 +172,26 @@ div.tablenav_wrap_top table.retrieve_sales_nav {
   height: 120px;
   padding-top: 65px;
   line-height: 25px;
+  background-color:#ccc;
+  background-size:cover;
+  position:relative;
 }
-.image_title_price #grid_layout_cycle li span{
+.image_title_price #grid_layout_cycle li span:first-child{
+  position:absolute;
   display: block;
+  width:100%;
+  bottom:23px;
+  background-color:rgba(0,0,0,0.4);
+  color:white;
+  line-height:18px;
+}
+.image_title_price #grid_layout_cycle li span:last-child {
+  position:absolute;
+  display: block;
+  width:100%;
+  bottom:0;
+  background-color:rgba(0,0,0,0.8);
+  color:white;
 }
 .image_title_price #grid_layout_cycle li span.price{
   font-weight: bold;

@@ -63,9 +63,11 @@ if(isset($_SERVER['HTTP_REFERER'])){
                                     <div class="add_items">
                                         <input id="add_product_id" class="ajax_chosen_select_products_and_variations" data-placeholder="<?php _e('Search Products', 'wc_point_of_sale'); ?>" />
                                         
-                                        <a class="tips" id="add_product_to_register" data-modal="modal-add_custom_product" data-tip="<?php _e('Add Custom Product', 'wc_point_of_sale'); ?>"><span></span></a>
+                                        <a class="button tips" id="add_product_to_register" data-modal="modal-add_custom_product" data-tip="<?php _e('Add Service Charge', 'wc_point_of_sale'); ?>">
+                                            <small>Add Service Charge</small>
+                                        </a>
                                         <?php if(get_option('woocommerce_calc_shipping') == 'yes') { ?>
-                                        <a class="tips" id="add_shipping_to_register" data-modal="modal-add_custom_shipping" data-tip="<?php _e('Add Shipping', 'wc_point_of_sale'); ?>">
+                                        <a style="display:none" class="tips" id="add_shipping_to_register" data-modal="modal-add_custom_shipping" data-tip="<?php _e('Add Shipping', 'wc_point_of_sale'); ?>">
                                             <span></span>
                                         </a>
                                         <?php } ?>
@@ -177,7 +179,7 @@ if(isset($_SERVER['HTTP_REFERER'])){
                             </div>
                         </div>
                     </div>
-                    <div id="wc-pos-customer-data" class="postbox ">
+                    <div id="wc-pos-customer-data" class="postbox " style="display:none;">
                         <div class="hndle">
                             <div class="add_items">
                                 <input id="customer_user" class="ajax_chosen_select_customer" data-placeholder="<?php _e('Search Customers', 'wc_point_of_sale'); ?>" autocompleate="off"/>
